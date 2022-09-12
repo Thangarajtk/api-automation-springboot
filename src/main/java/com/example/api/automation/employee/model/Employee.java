@@ -1,16 +1,12 @@
-package com.example.api.automation.employee;
+package com.example.api.automation.employee.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+@Builder
 @Entity
 public class Employee {
 

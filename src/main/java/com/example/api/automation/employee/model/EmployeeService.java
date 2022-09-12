@@ -1,9 +1,8 @@
-package com.example.api.automation.employee;
+package com.example.api.automation.employee.model;
 
+import com.example.api.automation.employee.entity.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,9 +14,11 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     public List<Employee> getEmployees() {
-        List<Employee> employees = Arrays.asList(
+        List<Employee> employees = List.of(
                 new Employee(1, "abc", "abc@email.com"),
-                new Employee(2, "xyz", "xyz@email.com")
+                new Employee(2, "xyz", "xyz@email.com"),
+                Employee.builder().id(3).name("test")
+                        .email("test@email.com").build()
         );
         employeeRepository.saveAll(employees);
         return employeeRepository.findAll();

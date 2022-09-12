@@ -1,5 +1,7 @@
-package com.example.api.automation.employee;
+package com.example.api.automation.employee.controller;
 
+import com.example.api.automation.employee.model.Employee;
+import com.example.api.automation.employee.model.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
