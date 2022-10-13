@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 @Component
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-
 }

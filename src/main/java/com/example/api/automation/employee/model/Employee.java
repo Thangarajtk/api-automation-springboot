@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Builder
 @Entity

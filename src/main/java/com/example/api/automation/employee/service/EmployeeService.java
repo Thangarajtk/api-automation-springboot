@@ -1,13 +1,16 @@
-package com.example.api.automation.employee.model;
+package com.example.api.automation.employee.service;
 
 import com.example.api.automation.employee.entity.EmployeeRepository;
+import com.example.api.automation.employee.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class EmployeeService {
 
     @Autowired
@@ -17,8 +20,11 @@ public class EmployeeService {
         List<Employee> employees = List.of(
                 new Employee(1, "abc", "abc@email.com"),
                 new Employee(2, "xyz", "xyz@email.com"),
-                Employee.builder().id(3).name("test")
-                        .email("test@email.com").build()
+                Employee.builder()
+                        .id(3)
+                        .name("test")
+                        .email("test@email.com")
+                        .build()
         );
         employeeRepository.saveAll(employees);
         return employeeRepository.findAll();
@@ -28,7 +34,7 @@ public class EmployeeService {
         Optional<Employee> byId = employeeRepository.findById(id);
         if (!byId.isPresent())
             throw new IllegalStateException("Id is not present");
-        return employeeRepository.getById(id);
+        return employeeRepository.getReferenceById(id);
     }
 
     public Employee addEmployee(Employee employee) {

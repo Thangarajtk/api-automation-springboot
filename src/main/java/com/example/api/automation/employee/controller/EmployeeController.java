@@ -1,7 +1,7 @@
 package com.example.api.automation.employee.controller;
 
+import com.example.api.automation.employee.service.EmployeeService;
 import com.example.api.automation.employee.model.Employee;
-import com.example.api.automation.employee.model.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,18 +22,18 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
-    @GetMapping("/employees/{id}")
-    public List<Employee> getEmployeeMatchingQuery(@RequestParam(required = false) int limit) {
-        return employeeService.getEmployeeMatchingQuery(limit);
-    }
+//    @GetMapping("/employees/{id}")
+//    public List<Employee> getEmployeeMatchingQuery(@RequestParam(required = false) int limit) {
+//        return employeeService.getEmployeeMatchingQuery(limit);
+//    }
 
-    @PostMapping("/employees1")
+    @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
     @DeleteMapping("/employees/{id}")
-    public String addEmployee(@PathVariable int id) {
+    public String deleteEmployee(@PathVariable int id) {
         return employeeService.deleteEmployee(id);
     }
 
