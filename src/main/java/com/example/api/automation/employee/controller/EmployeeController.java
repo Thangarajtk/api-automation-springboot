@@ -28,17 +28,17 @@ public class EmployeeController {
 //    }
 
     @PostMapping("/employees")
-    public Employee addEmployee(@RequestBody Employee employee) {
+    public List<Employee> addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
     @DeleteMapping("/employees/{id}")
-    public String deleteEmployee(@PathVariable int id) {
+    public List<Employee> deleteEmployee(@PathVariable int id) {
         return employeeService.deleteEmployee(id);
     }
 
     @PutMapping("/employees/{id}")
-    public Employee editEmployee(@RequestBody Employee employee, @PathVariable int id) {
-        return employeeService.editEmployee(employee, id);
+    public Employee updateEmployee(@RequestBody Employee employee, @PathVariable int id) {
+        return employeeService.updateEmployee(employee, id);
     }
 }

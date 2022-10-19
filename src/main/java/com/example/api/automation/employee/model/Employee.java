@@ -4,11 +4,11 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@AllArgsConstructor
+@Data
 @Builder
-@Entity
+@Entity // Repository to store the data
 public class Employee {
 
     @Id

@@ -48,9 +48,13 @@ class SpringBootRestAssuredTests {
     }
 
     @Test
-    void testPostEmployees() {
+    void testAddEmployee() {
         // Arrange
-        Employee employee = new Employee(4, "new_post_test", "newposttest@email.com");
+        Employee employee = Employee.builder()
+                .id(4)
+                .name("new_post_test")
+                .email("newposttest@email.com")
+                .build();
 
         // Act
         var response = given().baseUri(baseUrl)

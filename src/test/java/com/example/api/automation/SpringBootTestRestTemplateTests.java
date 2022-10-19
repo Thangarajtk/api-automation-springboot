@@ -3,6 +3,7 @@ package com.example.api.automation;
 import com.example.api.automation.employee.model.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -17,17 +18,19 @@ class SpringBootTestRestTemplateTests {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
+	@Value("${base.url}")
+	private String baseUrl;
+
 	@LocalServerPort
 	private int port;
 
 	@Test
 	void testGetEmployeeById() {
 		// Arrange
-		final String baseUri = "http://localhost:" + port + "/employees/1";
 		Employee employee = new Employee(1, "abc", "abc@email.com");
 
 		// Act
-		Employee responseEntity = this.restTemplate.getForObject(baseUri, Employee.class);
+		Employee responseEntity = this.restTemplate.getForObject(baseUrl + ":" + port + "/employees/1", Employee.class);
 
 		// Assert
 		assertThat(responseEntity).isEqualTo(employee);
@@ -36,11 +39,10 @@ class SpringBootTestRestTemplateTests {
 	@Test
 	void testGetEmployees() {
 		// Arrange
-		final String baseUri = "http://localhost:" + port + "/employees";
 		Employee employee = new Employee(1, "abc", "abc@email.com");
 
 		// Act
-		Employee[] responseEntity = this.restTemplate.getForObject(baseUri, Employee[].class);
+		Employee[] responseEntity = this.restTemplate.getForObject(baseUrl + ":" + port + "/employees", Employee[].class);
 		var responseEmployee = Arrays.stream(responseEntity).filter(x -> x.getId() == 1).findFirst().get();
 
 		// Assert
@@ -50,13 +52,14 @@ class SpringBootTestRestTemplateTests {
 	@Test
 	void testPostEmployees() {
 		// Arrange
-		final String baseUri = "http://localhost:" + port + "/employees";
 		Employee employee = new Employee(4, "new_post_test", "newposttest@email.com");
 
 		// Act
-		var responseEntity = this.restTemplate.postForObject(baseUri, employee, Employee.class);
+		var responseEntity = this.restTemplate.postForObject(baseUrl + ":" + port + "/employees", employee, Employee[].class);
+		var response = Arrays.stream(responseEntity)
+				.filter(x -> x.getId() == 4).findFirst().get();
 
 		// Assert
-		assertThat(responseEntity).isEqualTo(employee);
+		assertThat(response).isEqualTo(employee);
 	}
 }
