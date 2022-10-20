@@ -2,10 +2,9 @@
 
 ## Use of Spring boot in Test Automation
 ```
-1. Cleaner code
-2. Easy to maintain dependencies like Selenium, Rest Assured etc..
-3. Easy to play around with different environments, files, parallel execution etc..
-4. Everything is annotated.
+1. Cleaner code & Easy to maintain dependencies like Selenium, Rest Assured etc..
+2. Easy to play around with different environments, files, parallel execution etc..
+3. Everything is annotated.
 ```
 
 ## SpringBoot Application Context
@@ -22,3 +21,13 @@ The configuration metadata is represented in XML, Java annotations, or Java code
 3. Setter injection
 ```
 
+## Spring Annotations
+```
+1. @Component - Classes we create (automatic configuration)
+2. @Bean - Explicity create a spring bean by doing your own configuration because we can not modify third
+party classes source code. Instead we create an instance and request spring to manage it for us.
+3. @Value - To read data from application.properties, environment variables and so on.
+4. @SpringBootTest - It is useful when we need to bootstrap the entire container. The annotation works
+by creating the ApplicationContext that will be utilized in our tests.
+5. @Autowired - Annotation used to call component which connect through Dependency Injection.
+```
